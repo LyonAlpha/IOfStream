@@ -1,6 +1,6 @@
-# <span style="color: white">__OFSTREAM__</span>
+# <span style="color: white">__IOFSTREAM__</span>
 
-### *Output File Stream*
+### *Input Output File Stream*
 
 #### Under Experimentation, Not Fully Developed As Of 2022
 
@@ -9,7 +9,7 @@ Developed by ST 2022
 ## Installation
 
 ```console
-pip install ofstream
+pip install iofstream
 ```
 
 
@@ -18,14 +18,14 @@ pip install ofstream
 *__Using The File Functions__*
 
 ```python
-from ofstream import <function_name>
+from iofstream import <function_name>
 function_name('<file_name.txt>', '<filetext>', '<other_parameters>')
 # And ... Done!
 ```
 *__An Example__*
 
 ```python
-from ofstream import write_file
+from iofstream import write_file
 write_file('myfile.txt', 'mytextstring!')
 # And ... Done!
 ```
@@ -33,7 +33,7 @@ write_file('myfile.txt', 'mytextstring!')
 ### The Logger - <span style="color: red">[*__Extreme__ Alpha Version*] </span>
 
 ```python
-from ofstream import Log
+from iofstream import Log
 
 # Create Instance/Log
 
@@ -46,7 +46,7 @@ log = Log('<log_name>', '<log_message>', '<log_level>', '<log_file>', True)
 *__An Example__*
 
 ```python
-from ofstream import Log
+from iofstream import Log
 
 # Create Instance/Log
 

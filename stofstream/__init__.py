@@ -1,5 +1,6 @@
 from colorama import Fore
 import datetime as dt
+from sty import fg, bg, ef, rs, Style, RgbFg
 
 def write_file(filename:str, text:str, newline:bool = True):
     try:    
@@ -87,11 +88,23 @@ class Log():
             
         elif self.level == 'WARNING' and self.willprint:
             append_file(self.filename, f'{self.name} --> {self.level} --> + {self.message}')
-            print(Fore.RED + self.name + ' --> ' + self.level + ' --> ' + self.message + Fore.RESET) #TODO Change This To Orange By Using Another Library Instead Of Colorama
+            # Red In Colorama print(Fore.RED + self.name + ' --> ' + self.level + ' --> ' + self.message + Fore.RESET)
+            fg.orange = Style(RgbFg(255, 150, 50))
+            text = fg.orange + self.name + ' --> ' + self.level + ' --> ' + self.message + fg.rs
+            print(text)
             
         elif self.level == 'ERROR' and self.willprint:
             append_file(self.filename, f'{self.name} --> {self.level} --> + {self.message}')
             print(Fore.YELLOW + self.name + ' --> ' + self.level + ' --> ' + self.message + Fore.RESET)
+            
+        elif self.level == 'CRITICAL' and not self.willprint:
+            append_file(self.filename, f'{self.name} --> {self.level} --> + {self.message}')
+            
+        elif self.level == 'WARNING' and not self.willprint:
+            append_file(self.filename, f'{self.name} --> {self.level} --> + {self.message}')
+            
+        elif self.level == 'ERROR' and not self.willprint:
+            append_file(self.filename, f'{self.name} --> {self.level} --> + {self.message}')
             
         #TODO Add More Logger Methods
     

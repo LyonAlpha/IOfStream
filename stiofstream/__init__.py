@@ -1,7 +1,3 @@
-from colorama import Fore
-import datetime as dt
-from sty import fg, bg, ef, rs, Style, RgbFg
-
 def write_file(filename:str, text:str, newline:bool = True):
 	try:	
 		with open(filename, 'w') as f:
@@ -37,32 +33,51 @@ def create_file(filename:str):
 			return True
 	except Exception as e:
 		print(e)
-def write_and_read_file(filename:str, text:str='', seek_number:int=0):
+def write_and_read_file(filename:str, text:str='', seek_number:int=0, unlist:bool=True):
 	try:
 		with open(filename, 'w+') as f:
 			f.writelines(text)
 			f.seek(seek_number)
-			listLines = f.readlines()
-			lines = listLines[0]
-			return lines
+			if unlist == True:
+				listLines = f.readlines()
+				lines = listLines[0]
+			else:
+				lines = f.readlines()
+		return lines
 	except Exception as e:
 		print(e)
 		
-def read_and_write_file(filename:str, text:str=''):
+def read_and_write_file(filename:str, text:str='', unlist:bool=True):
 	try:
-		with open(filename, 'w+') as f:
-			f.writelines(text)
-			lines = f.readlines()
-			return lines
+		with open(filename, 'r+') as f:
+			if unlist == True:
+				listLines = f.readlines()
+				lines = listLines[0]
+			else:
+				lines = f.readlines()
+			f.writelines(text)	
+		return lines
+	except Exception as e:
+		print(e)
+  
+def read_file(filename:str, start_number:int=0, unlist:bool=True):
+	try:
+		with open(filename, 'r') as f:
+			f.seek(start_number)
+			if unlist == True:
+				listLines = f.readlines()
+				lines = listLines[0]
+			else:
+				lines = f.readlines()
+		return lines
 	except Exception as e:
 		print(e)
 
-##############################################################################################################################
-##############################################################################################################################
-####################################################Logger####################################################################
-##############################################################################################################################
-##############################################################################################################################
-
+##############################################################################LOGGER##############################################################################
+  
+from colorama import Fore
+import datetime as dt
+from sty import fg, bg, ef, rs, Style, RgbFg
 
 class Log():
 	def __init__(self, name:str, message:str, level:str, filenamewithlogtype:str=None, willprint:bool=True):
@@ -115,3 +130,42 @@ class Log():
 		#print(self.level)
 		#print(self.filename)
 		#print(self.willprint)
+
+class Logger():
+	def __init__(self:str, name:str):
+		self.name = name.upper()
+
+	def send_error(message:str, filename:str, willprint:bool=True):
+		self.message = message
+		self.filename = filename
+		self.willprint = willprint
+		append_file(self.filename, f'{self.name} --> {self.level} --> + {self.message}')
+		if willprint == True:
+			print(Fore.YELLOW + self.name + ' --> ' + self.level + ' --> ' + self.message + Fore.RESET)
+		else:
+			pass
+
+	def send_warning(message:str, filename:str, willprint:bool=True):
+		self.message = message
+		self.filename = filename
+		self.willprint = willprint
+		append_file(self.filename, f'{self.name} --> {self.level} --> + {self.message}')
+		if willprint == True:
+			# Red In Colorama print(Fore.RED + self.name + ' --> ' + self.level + ' --> ' + self.message + Fore.RESET)
+			fg.orange = Style(RgbFg(255, 150, 50))
+			text = fg.orange + self.name + ' --> ' + self.level + ' --> ' + self.message + fg.rs
+			print(text)
+		else:
+			pass
+
+	def send_critical(message:str, filename:str, willprint:bool=True):
+		self.message = message
+		self.filename = filename
+		self.willprint = willprint
+		append_file(self.filename, f'{self.name} --> {self.level} --> + {self.message}')
+		if self.willprint == True:
+			print(Fore.RED + self.name + ' --> ' + self.level + ' --> ' + self.message + Fore.RESET)
+		else:
+			pass
+
+		

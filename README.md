@@ -1,8 +1,6 @@
-# <span style="color: white">__IOFSTREAM__</span>
+# <span style="color: white">__IOFSTREAM__ - Version 0.0.4 </span>
 
 ### *Input Output File Stream*
-
-### Version - 0.0.4
 
 #### Under Experimentation, Not Fully Developed As Of 2022
 

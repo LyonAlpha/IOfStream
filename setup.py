@@ -1,24 +1,34 @@
 from setuptools import setup, find_packages
- 
-classifiers = [
-  'Development Status :: 5 - Production/Stable',
-  'Intended Audience :: Education',
-  'Operating System :: Microsoft :: Windows :: Windows 10',
-  'License :: OSI Approved :: MIT License',
-  'Programming Language :: Python :: 3'
-]
- 
+import codecs
+import os
+
+here = os.path.abspath(os.path.dirname(__file__))
+
+with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
+    long_description = "\n" + fh.read()
+
+VERSION = '0.0.5'
+DESCRIPTION = 'Input/Output File Stream'
+LONG_DESCRIPTION = 'A Package That Provides Intuitive File Handling And A Logger'
+
+# Setting up
 setup(
-  name='ofstream',
-  version='0.0.1',
-  description='A Simple File Handling Library With A Logger',
-  long_description=open('README.txt').read() + '\n\n' + open('CHANGELOG.txt').read(),
-  url='',  
-  author='ST',
-  author_email='amazingfalcon1@gmail.com',
-  license='MIT', 
-  classifiers=classifiers,
-  keywords='output', 
-  packages=find_packages(),
-  install_requires=[''] 
+    name="iofstream",
+    version=VERSION,
+    author="ST",
+    author_email="arrowsoul@protonmail.com",
+    description=DESCRIPTION,
+    long_description_content_type="text/markdown",
+    long_description=long_description,
+    packages=find_packages(),
+    install_requires=['colorama', 'sty'],
+    keywords=['python', 'input', 'output', 'file', 'stream', 'handling'],
+    classifiers=[
+        "Development Status :: 1 - Planning",
+        "Intended Audience :: Developers",
+        "Programming Language :: Python :: 3",
+        "Operating System :: Unix",
+        "Operating System :: MacOS :: MacOS X",
+        "Operating System :: Microsoft :: Windows",
+    ]
 )

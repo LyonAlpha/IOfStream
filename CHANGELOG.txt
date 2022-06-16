@@ -16,3 +16,9 @@ Change Log
 
 0.0.5(6/16/2022)
 - Added Logger With Log Class Functionalities
+
+0.0.6(6/16/2022)
+- Updated README.txt For The Logger Class
+
+0.0.7(6/16/2022)
+- Fixed __init__.py For Logger Send_Methods, Forgot To Pass The Self Parameter.

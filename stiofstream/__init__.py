@@ -135,7 +135,7 @@ class Logger():
 	def __init__(self:str, name:str):
 		self.name = name.upper()
 
-	def send_error(message:str, filename:str, willprint:bool=True):
+	def send_error(self, message:str, filename:str, willprint:bool=True):
 		self.message = message
 		self.filename = filename
 		self.willprint = willprint
@@ -145,7 +145,7 @@ class Logger():
 		else:
 			pass
 
-	def send_warning(message:str, filename:str, willprint:bool=True):
+	def send_warning(self, message:str, filename:str, willprint:bool=True):
 		self.message = message
 		self.filename = filename
 		self.willprint = willprint
@@ -158,7 +158,7 @@ class Logger():
 		else:
 			pass
 
-	def send_critical(message:str, filename:str, willprint:bool=True):
+	def send_critical(self, message:str, filename:str, willprint:bool=True):
 		self.message = message
 		self.filename = filename
 		self.willprint = willprint

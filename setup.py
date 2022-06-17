@@ -7,7 +7,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
     long_description = "\n" + fh.read()
 
-VERSION = '0.0.7'
+VERSION = '0.1.0'
 DESCRIPTION = 'Input/Output File Stream'
 LONG_DESCRIPTION = 'A Package That Provides Intuitive File Handling And A Logger'
 

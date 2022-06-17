@@ -1,4 +1,4 @@
-# <span style="color: white">__IOFSTREAM__ - Version 0.0.4 </span>
+# <span style="color: white">__IOFSTREAM__ - Version 0.1.0 </span>
 
 ### *Input Output FileStream*
 

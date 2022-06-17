@@ -1,10 +1,10 @@
-def write_file(filename:str, text:str, newline:bool = True):
+import time
+import os
+
+def write_file(filename:str, text:str):
 	try:	
 		with open(filename, 'w') as f:
-			if newline == True:
-				f.writelines(text)
-			else:
-				f.write(text)
+			f.writelines(text)
 	except Exception as e:
 		print(e)
 		
@@ -73,8 +73,27 @@ def read_file(filename:str, start_number:int=0, unlist:bool=True):
 	except Exception as e:
 		print(e)
 
+def file_exists(filename:str):
+	try:
+		with open(filename, 'r') as f:
+			return True
+	except:
+		return False
+
+def file_is_empty(filename):
+	return os.path.isfile(filename) and not os.path.getsize(filename) > 0
+
+def append_or_write_file(filename:str, text:str, newline:bool=True):
+	if file_is_empty(filename):
+		write_file(filename, text)
+		mode = 'Write'
+	elif not file_is_empty(filename):
+		append_file(filename, text, newline)
+		mode = 'Append'
+	return mode
+
 ##############################################################################LOGGER##############################################################################
-  
+
 from colorama import Fore
 import datetime as dt
 from sty import fg, bg, ef, rs, Style, RgbFg
@@ -139,9 +158,9 @@ class Logger():
 		self.message = message
 		self.filename = filename
 		self.willprint = willprint
-		append_file(self.filename, f'{self.name} --> {self.level} --> + {self.message}')
+		append_file(self.filename, f'{self.name} --> ERROR --> + {self.message}')
 		if willprint == True:
-			print(Fore.YELLOW + self.name + ' --> ' + self.level + ' --> ' + self.message + Fore.RESET)
+			print(Fore.YELLOW + self.name + ' --> ' + 'ERROR' + ' --> ' + self.message + Fore.RESET)
 		else:
 			pass
 
@@ -149,11 +168,11 @@ class Logger():
 		self.message = message
 		self.filename = filename
 		self.willprint = willprint
-		append_file(self.filename, f'{self.name} --> {self.level} --> + {self.message}')
+		append_file(self.filename, f'{self.name} --> WARNING --> + {self.message}')
 		if willprint == True:
 			# Red In Colorama print(Fore.RED + self.name + ' --> ' + self.level + ' --> ' + self.message + Fore.RESET)
 			fg.orange = Style(RgbFg(255, 150, 50))
-			text = fg.orange + self.name + ' --> ' + self.level + ' --> ' + self.message + fg.rs
+			text = fg.orange + self.name + ' --> ' + 'WARNING' + ' --> ' + self.message + fg.rs
 			print(text)
 		else:
 			pass
@@ -162,10 +181,8 @@ class Logger():
 		self.message = message
 		self.filename = filename
 		self.willprint = willprint
-		append_file(self.filename, f'{self.name} --> {self.level} --> + {self.message}')
+		append_file(self.filename, f'{self.name} --> CRITICAL --> + {self.message}')
 		if self.willprint == True:
-			print(Fore.RED + self.name + ' --> ' + self.level + ' --> ' + self.message + Fore.RESET)
+			print(Fore.RED + self.name + ' --> ' + 'CRITICAL' + ' --> ' + self.message + Fore.RESET)
 		else:
 			pass
-
-		

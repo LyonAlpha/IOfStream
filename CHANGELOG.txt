@@ -22,3 +22,13 @@ Change Log
 
 0.0.7(6/16/2022)
 - Fixed __init__.py For Logger Send_Methods, Forgot To Pass The Self Parameter.
+
+0.0.8(6/16/2022)
+- Fixed __init__.py For Logger Send_Methods, Forgot To Change The Level Parameter To Be A (Hard Coded) String Instead Of A Variable.
+
+0.0.9(6/17/2022)
+- Added "File Exists" Function. File_Exists Checks Whether A File Exists Or Not, And Returns The Respective Boolean.
+
+0.1.0(6/18/2022)
+- Added File Is Empty Function
+- Added Append Or Write Function. If A File Is Empty, Use The Write Function. Else, Use The Append Function
